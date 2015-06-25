@@ -129,7 +129,7 @@ def parseXMLtoJSON(xmlData):
 # and started as a daemon on my server
 ###
 if __name__ == "__main__":
-    data = requestXMLContent
+    data = requestXMLContent()
     json = parseXMLtoJSON(data)
     with open("omgubuntu.json", "w") as of:
         of.write(json)
