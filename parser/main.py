@@ -130,6 +130,9 @@ def parseXMLtoJSON(xmlData):
 ###
 if __name__ == "__main__":
     data = requestXMLContent()
-    json = parseXMLtoJSON(data)
-    with open("omgubuntu.json", "w") as of:
-        of.write(json)
+    if data:
+        json = parseXMLtoJSON(data)
+        with open("omgubuntu.json", "w") as of:
+            of.write(json)
+    else:
+        print("DEBUG: No data retrieved from OMG!Ubuntu. Check that you are connected to the internet and try again.")
