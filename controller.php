@@ -11,7 +11,22 @@
 * /api/posts    GET           Retrieve all posts parsed from OMG Ubuntu RSS feed
 */
 
-$data = file_get_contents('./omgubuntu.json')
+$uri =  $_SERVER['REQUEST_URI'];
+$api_method = explode("/", $uri)[2];
+$data = NULL;
+
+if(!strstr($uri, "/api/posts")) {
+  $data = array(
+    "response" => "400",
+    "content" => "Bad request. API function '".$api_method."' not known."
+  );
+} else {
+    $data = array(
+      "response" => "200",
+      "content" => file_get_contents('./omgubuntu.json')
+    );
+}
+
 header('Content-Type: application/json');
 echo json_encode($data);
 ?>

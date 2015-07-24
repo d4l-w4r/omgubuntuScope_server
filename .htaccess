@@ -1,5 +1,10 @@
+##Don't forget to enable mod_rewrite in /etc/apache2/mods-enabled
 <IfModule mod_rewrite.c>
 RewriteEngine On
+# Redirect requests to index.php
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.php [QSA,L]
+RewriteRule ^((?s).*)$ controller.php [QSA,L]
+RewriteRule /?\.htaccess$ - [F,L]
+RewriteRule ^/?test.txt$ - [F,L]
+RewriteRule ^/?omgubuntu.json$ - [F,L]
 </IfModule>
