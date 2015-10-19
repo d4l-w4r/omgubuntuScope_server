@@ -115,9 +115,9 @@ def parseXMLtoJSON(xmlData):
         desc, short_desc, author, image = parseDescriptionString(item.find('description').text[:-1]) #cutting the last character as it is a new line ("\n")
 
         if item == items[-1]: #If we're at the last item in the list, don't put a comma after the element
-            jsonString += """\"{0}\" : [{{\"title\": \"{1}\", \"description\":\"{2}\", \"short-desc\": \"{3}\", \"author\": \"{4}\", \"image\": \"{5}\", \"ressource-url\":\"{6}\"}}]""".format(item_id, title, desc, short_desc, author, image, url)
+            jsonString += """\"{0}\" : [{{\"title\": \"{1}\", \"description\":\"{2}\", \"shortDescription\": \"{3}\", \"author\": \"{4}\", \"imageUrl\": \"{5}\", \"ressourceUrl\":\"{6}\"}}]""".format(item_id, title, desc, short_desc, author, image, url)
         else:
-            jsonString += """\"{0}\" : [{{\"title\": \"{1}\", \"description\":\"{2}\", \"short-desc\": \"{3}\", \"author\": \"{4}\", \"image\": \"{5}\", \"ressource-url\":\"{6}\"}}], """.format(item_id, title, desc, short_desc, author, image, url)
+            jsonString += """\"{0}\" : [{{\"title\": \"{1}\", \"description\":\"{2}\", \"shortDescription\": \"{3}\", \"author\": \"{4}\", \"imageUrl\": \"{5}\", \"ressourceUrl\":\"{6}\"}}], """.format(item_id, title, desc, short_desc, author, image, url)
         item_id += 1
 
     jsonString = jsonString + """}""" #closing the jsonString

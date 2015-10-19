@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class VOResponse {
 	private String responseCode;
-	private Map<String, List<VOContent>> content;
+	private List<VOContent> content;
 
 	public String getResponseCode() {
 		return responseCode;
@@ -16,11 +16,11 @@ public class VOResponse {
 		this.responseCode = responseCode;
 	}
 
-	public Map<String, List<VOContent>> getContent() {
+	public List<VOContent> getContent() {
 		return content;
 	}
 
-	public void setContent(Map<String, List<VOContent>> content) {
+	public void setContent(List<VOContent> content) {
 		this.content = content;
 	}
 }

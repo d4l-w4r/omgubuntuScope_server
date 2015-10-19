@@ -5,7 +5,7 @@ public class VOContent {
 	private String description;
 	private String shortDescription;
 	private String author;
-	private String image;
+	private String imageUrl;
 	private String ressourceUrl;
 	
 	public String getTitle() {
@@ -33,15 +33,23 @@ public class VOContent {
 		this.author = author;
 	}
 	public String getImage() {
-		return image;
+		return imageUrl;
 	}
 	public void setImage(String image) {
-		this.image = image;
+		this.imageUrl = image;
 	}
 	public String getRessourceUrl() {
 		return ressourceUrl;
 	}
 	public void setRessourceUrl(String ressourceUrl) {
 		this.ressourceUrl = ressourceUrl;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("{ title: ").append(title).append(", description: ").append(description).append(", shortDesc: ").append(shortDescription)
+		.append(", author: ").append(author).append(", imageUrl: ").append(imageUrl).append(", ressourceUrl: ").append(ressourceUrl).append(" }");
+		return sb.toString();
 	}
 }

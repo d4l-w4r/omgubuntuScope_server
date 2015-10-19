@@ -1,5 +1,7 @@
 package local;
 
+import data.VOContent;
+import data.VOResponse;
 import network.NetworkingService;
 
 public class Application {
@@ -21,7 +23,11 @@ public class Application {
 	}
 	
 	public static void parseResult(String queryResult) {
-		//Do magic, make VO Instances
+		VOResponse response = new JsonParser().parseJsonFromString(queryResult);
+		System.out.println(response.getResponseCode());
+		for (VOContent object : response.getContent()) {
+			System.out.println(response.getContent().get(0).toString());
+		}
 	}
 	
 }

@@ -22,7 +22,7 @@ if(!strstr($uri, "/api/posts")) {
   );
 } else {
     $data = array(
-      "response" => "200",
+      "responseCode" => "200",
       "content" => file_get_contents('./omgubuntu.json')
     );
 }
