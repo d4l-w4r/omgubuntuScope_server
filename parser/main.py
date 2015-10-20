@@ -105,8 +105,7 @@ def parseXMLtoJSON(xmlData):
 
     #getting all <item> tags from the root
     items = root[0].findall('item')
-    jsonString = """{""" #opening the jsonString
-    item_id = 0
+    jsonString = "[" #opening the jsonString
 
     for item in items:
         title = item.find('title').text
@@ -115,12 +114,11 @@ def parseXMLtoJSON(xmlData):
         desc, short_desc, author, image = parseDescriptionString(item.find('description').text[:-1]) #cutting the last character as it is a new line ("\n")
 
         if item == items[-1]: #If we're at the last item in the list, don't put a comma after the element
-            jsonString += """\"{0}\" : [{{\"title\": \"{1}\", \"description\":\"{2}\", \"shortDescription\": \"{3}\", \"author\": \"{4}\", \"imageUrl\": \"{5}\", \"ressourceUrl\":\"{6}\"}}]""".format(item_id, title, desc, short_desc, author, image, url)
+            jsonString += "{{\"title\": \"{0}\", \"description\":\"{1}\", \"shortDescription\": \"{2}\", \"author\": \"{3}\", \"imageUrl\": \"{4}\", \"ressourceUrl\":\"{5}\"}}]".format(title, desc, short_desc, author, image, url)
         else:
-            jsonString += """\"{0}\" : [{{\"title\": \"{1}\", \"description\":\"{2}\", \"shortDescription\": \"{3}\", \"author\": \"{4}\", \"imageUrl\": \"{5}\", \"ressourceUrl\":\"{6}\"}}], """.format(item_id, title, desc, short_desc, author, image, url)
-        item_id += 1
-
-    jsonString = jsonString + """}""" #closing the jsonString
+            jsonString += "{{\"title\": \"{0}\", \"description\":\"{1}\", \"shortDescription\": \"{2}\", \"author\": \"{3}\", \"imageUrl\": \"{4}\", \"ressourceUrl\":\"{5}\"}}, ".format(title, desc, short_desc, author, image, url)
+        
+    jsonString = jsonString + "}" #closing the jsonString
 
     return str(jsonString)
 
@@ -132,7 +130,7 @@ if __name__ == "__main__":
     data = requestXMLContent()
     if data:
         json = parseXMLtoJSON(data)
-        with open("../omgubuntu.json", "w") as of:
+        with open("/var/www/html/api/omgubuntu.json", "w") as of:
             of.write(json)
     else:
         print("DEBUG: No data retrieved from OMG!Ubuntu. Check that you are connected to the internet and try again.")

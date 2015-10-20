@@ -1,14 +1,6 @@
 package local;
 
-import java.util.ArrayList;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
-import data.VOContent;
 import data.VOResponse;
 
 public class JsonParser {
@@ -20,8 +12,9 @@ public class JsonParser {
 	}
 	
 	public VOResponse parseJsonFromString(String input) {
-		String testString = "{\"responseCode\":200, \"content\":[{\"title\":\"testTitle\",\"description\":\"abc123\",\"shortDescription\":\"abc\",\"author\":\"daniel\",\"imageUrl\":\"http://foo.bar/img.jpg\",\"ressourceUrl\":\"http://foo.baz\"}]}";
-		parsedResponse = g.fromJson(testString, VOResponse.class);
+		String[] parts = input.split("\"\\[\\{");
+		String cleanedString = parts[0] + new com.google.gson.JsonParser().parse(input).getAsJsonObject().get("content").getAsString();
+		parsedResponse = g.fromJson(cleanedString, VOResponse.class);
 		return parsedResponse;
 	}
 }

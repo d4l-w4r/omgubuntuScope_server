@@ -19,14 +19,13 @@ public class Application {
 				}
 			}
 		}).start();
-		
 	}
 	
 	public static void parseResult(String queryResult) {
 		VOResponse response = new JsonParser().parseJsonFromString(queryResult);
 		System.out.println(response.getResponseCode());
 		for (VOContent object : response.getContent()) {
-			System.out.println(response.getContent().get(0).toString());
+			System.out.println(object.toString());
 		}
 	}
 	

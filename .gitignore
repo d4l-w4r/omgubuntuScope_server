@@ -2,5 +2,6 @@
 *.*~
 *.json
 __pycache__
+.metadata*
 .metadata/
 .medata/*
